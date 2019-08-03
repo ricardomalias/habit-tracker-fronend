@@ -1,15 +1,7 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import { createStore, applyMiddleware } from "redux";
+import rootReducer from "./reducers";
+import apiMiddleware from "./middleware/api";
 
-import { Provider } from 'react-redux'
-import store from './store'
-
-import App from './App'
-
-const rootElement = document.getElementById('root')
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  rootElement
-)
+const store = createStore(rootReducer, applyMiddleware(apiMiddleware));
+window.store = store;
+export default store;

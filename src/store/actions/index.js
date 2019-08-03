@@ -1,22 +1,47 @@
-let nextTodoId = 0
-export const addTodo = text => ({
-  type: 'ADD_TODO',
-  id: nextTodoId++,
-  text
-})
 
-export const setVisibilityFilter = filter => ({
-  type: 'SET_VISIBILITY_FILTER',
-  filter
-})
+import {
+    SET_GOALS,
+    API,
+    FETCH_GOALS
+} from './types';
 
-export const toggleTodo = id => ({
-  type: 'TOGGLE_TODO',
-  id
-})
+export function fetchGoals() {
+  return apiAction({
+    url: "/goals",
+    onSuccess: (data) => {
+        return {
+          type: SET_GOALS,
+          payload: data
+        }
+    },
+    onFailure: () => {
+        console.log("Error occured loading goals")
+    },
+    label: FETCH_GOALS
+  });
+}
 
-export const VisibilityFilters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ACTIVE'
+function apiAction({
+  url = "",
+  method = "GET",
+  data = null,
+  accessToken = null,
+  onSuccess = () => {},
+  onFailure = () => {},
+  label = "",
+  headersOverride = null
+}) {
+  return {
+    type: API,
+    payload: {
+      url,
+      method,
+      data,
+      accessToken,
+      onSuccess,
+      onFailure,
+      label,
+      headersOverride
+    }
+  };
 }
