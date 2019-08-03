@@ -1,4 +1,6 @@
 
+# Habit Tracker Front
+
 This an habit tracker that you should not use
 
 
@@ -11,6 +13,7 @@ This an habit tracker that you should not use
 - Axios
 - Material UI
 - Mock
+- Moment.js
 
 
 - Update settings to write api url
