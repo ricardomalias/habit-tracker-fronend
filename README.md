@@ -16,4 +16,4 @@ This an habit tracker that you should not use
 - Moment.js
 
 
-- Update settings to write api url
+Obs: Update settings to write api url
